@@ -50,6 +50,7 @@ class MainWidget : public QMainWindow
   void resizeEvent(QResizeEvent *e);
 
  private:
+  void Process();
   QString InsertionSql() const;
   QString SqlEscape(const QString &str) const;
   QLabel *moji_db_type_label;

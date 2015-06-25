@@ -2,3 +2,5 @@
 	* Initial package creation.
 2015-06-25 Fred Gleason <fredg@paravelsystems.com>
 	* Stubbed out UI.
+2015-06-25 Fred Gleason <fredg@paravelsystems.com>
+	* Got insert/select loop working.

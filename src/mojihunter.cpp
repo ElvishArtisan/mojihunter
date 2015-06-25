@@ -20,6 +20,7 @@
 
 #include <qapplication.h>
 #include <qmessagebox.h>
+#include <qsqldatabase.h>
 
 #include "mojihunter.h"
 
@@ -104,6 +105,7 @@ MainWidget::MainWidget(QWidget *parent)
   //
   moji_process_button=new QPushButton(tr("Process"),this);
   moji_process_button->setFont(label_font);
+  moji_process_button->setDisabled(true);
   connect(moji_process_button,SIGNAL(clicked()),
 	  this,SLOT(processClickedData()));
 
@@ -154,6 +156,7 @@ QSizePolicy MainWidget::sizePolicy() const
 
 void MainWidget::processClickedData()
 {
+  Process();
 }
 
 
@@ -165,6 +168,7 @@ void MainWidget::sqlClickedData()
 
 void MainWidget::inputChangedData()
 {
+  moji_process_button->setDisabled(moji_input_text->text().isEmpty());
   moji_sql_button->setDisabled(moji_input_text->text().isEmpty());
 }
 
@@ -198,6 +202,58 @@ void MainWidget::resizeEvent(QResizeEvent *e)
   moji_result_text->
     setGeometry(10,190+(size().height()-152)/2-22,
 		size().width()-20,(size().height()-152)/2-22);
+}
+
+
+void MainWidget::Process()
+{
+  QSqlDatabase *db=NULL;
+  QString sql;
+  QSqlQuery *q;
+
+  db=QSqlDatabase::addDatabase(moji_db_type_box->currentText());
+  if(!db) {
+    QMessageBox::critical(this,tr("MojiHunter")+" - "+tr("Database Error"),
+			  tr("Unable to open DB connection."));
+    return;
+  }
+  db->setDatabaseName(moji_db_dbname_edit->text());
+  db->setHostName(moji_db_hostname_edit->text());
+  db->setUserName(moji_db_username_edit->text());
+  db->setPassword(moji_db_password_edit->text());
+  if(!db->open()) {
+    QMessageBox::critical(this,tr("MojiHunter")+" - "+tr("Database Error"),
+			  tr("Unable to connect to database")+"\n"+
+			  db->lastError().text()+".");
+    QSqlDatabase::removeDatabase(db);
+    return;
+  }
+  q=new QSqlQuery(InsertionSql());
+  if(!q->isActive()) {
+    QMessageBox::warning(this,tr("Mojihunter")+" - "+tr("Insertion SQL Error"),
+			 tr("SQL Error")+":\n"+db->lastError().text());
+    delete q;
+    QSqlDatabase::removeDatabase(db);
+    return;
+  }
+  delete q;
+
+  sql=QString("select MOJIFIELD from MOJITABLE ")+
+    "where ID=LAST_INSERT_ID()";
+  q=new QSqlQuery(sql);
+  if(!q->isActive()) {
+    QMessageBox::warning(this,tr("Mojihunter")+" - "+tr("Select SQL Error"),
+			 tr("SQL Error")+":\n"+db->lastError().text());
+    delete q;
+    QSqlDatabase::removeDatabase(db);
+    return;
+  }
+  if(q->first()) {
+    moji_result_text->setText(q->value(0).toString());
+  }
+  delete q;
+
+  QSqlDatabase::removeDatabase(db);
 }
 
 
