@@ -1,0 +1,7 @@
+This is the README file for the qt3chars package.
+
+This software comes with ABSOLUTELY NO WARRANTY.  See the file COPYING for
+details.
+
+Qt3chars is a small test harness program that can be used to verify
+RDBMS systems for Unicode character fidelity.
