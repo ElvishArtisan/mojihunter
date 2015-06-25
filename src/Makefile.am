@@ -1,6 +1,6 @@
 ## automake.am
 ##
-## Automake.am for qt3chars/src
+## Automake.am for mojihunter/src
 ##
 ##   (C) Copyright 2015 Fred Gleason <fredg@paravelsystems.com>
 ##
@@ -27,13 +27,15 @@ MOC = @QT_MOC@
 moc_%.cpp:	%.h
 	$(MOC) $< -o $@
 
-bin_PROGRAMS = qt3chars
+bin_PROGRAMS = mojihunter
 
-dist_qt3chars_SOURCES = qt3chars.cpp qt3chars.h
+dist_mojihunter_SOURCES = mojihunter.cpp mojihunter.h\
+                          textviewer.cpp textviewer.h
 
-nodist_qt3chars_SOURCES = moc_qt3chars.cpp
+nodist_mojihunter_SOURCES = moc_mojihunter.cpp\
+                            moc_textviewer.cpp
 
-qt3chars_LDADD = -lm -lpthread -lqui
+mojihunter_LDADD = -lm -lpthread -lqui
 
 CLEANFILES = *~\
              *.exe\

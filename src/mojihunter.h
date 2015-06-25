@@ -1,4 +1,4 @@
-// qt3chars.h
+// mojihunter.h
 //
 // A utility for testing RDBMS for character fidelity.
 //
@@ -24,12 +24,14 @@
 #include <qmainwindow.h>
 #include <qsize.h>
 #include <qsizepolicy.h>
+#include <qtextedit.h>
 #include <qpushbutton.h>
+#include <qlabel.h>
 #include <qlineedit.h>
 #include <qcombobox.h>
-#include <qsocketdevice.h>
 #include <qlabel.h>
-#include <qtimer.h>
+
+#include "textviewer.h"
 
 class MainWidget : public QMainWindow
 {
@@ -38,7 +40,37 @@ class MainWidget : public QMainWindow
   MainWidget(QWidget *parent=0);
   QSize sizeHint() const;
   QSizePolicy sizePolicy() const;
+
+ private slots:
+  void processClickedData();
+  void sqlClickedData();
+  void inputChangedData();
+
+ protected:
+  void resizeEvent(QResizeEvent *e);
+
+ private:
+  QString InsertionSql() const;
+  QString SqlEscape(const QString &str) const;
+  QLabel *moji_db_type_label;
+  QComboBox *moji_db_type_box;
+  QLabel *moji_db_hostname_label;
+  QLineEdit *moji_db_hostname_edit;
+  QLabel *moji_db_dbname_label;
+  QLineEdit *moji_db_dbname_edit;
+  QLabel *moji_db_username_label;
+  QLineEdit *moji_db_username_edit;
+  QLabel *moji_db_password_label;
+  QLineEdit *moji_db_password_edit;
+  QLabel *moji_input_label;
+  QTextEdit *moji_input_text;
+  QLabel *moji_result_label;
+  QTextEdit *moji_result_text;
+  QPushButton *moji_process_button;
+  QPushButton *moji_sql_button;
+  QPushButton *moji_exit_button;
+  TextViewer *moji_text_viewer;
 };
 
 
-#endif  // QT3CHARS_H
+#endif  // mojihunter_H
