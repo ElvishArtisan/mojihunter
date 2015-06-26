@@ -390,7 +390,19 @@ QString MainWidget::InsertionSql() const
 
 QString MainWidget::SqlEscape(const QString &str) const
 {
-  return str;
+  //
+  // See http://dev.mysql.com/doc/refman/5.0/en/string-literals.html
+  // for details on escaping SQL string literals in MySQL.
+  //
+  QString ret=str;
+  ret.replace("\\","\\\\");
+  ret.replace("\'","\\\'");
+  ret.replace("\"","\\\"");
+  ret.replace("\b","\\\b");
+  ret.replace("\n","\\\n");
+  ret.replace("\r","\\\r");
+  ret.replace("\t","\\\t");
+  return ret;
 }
 
 
