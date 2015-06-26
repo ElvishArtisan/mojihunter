@@ -4,3 +4,6 @@
 	* Stubbed out UI.
 2015-06-25 Fred Gleason <fredg@paravelsystems.com>
 	* Got insert/select loop working.
+2015-06-26 Fred Gleason <fredg@paravelsystems.com>
+	* Added 'src/profile.cpp' and 'src/profile.h'.
+	* Implemented parameter caching via a $(HOME)/.mojihunterrc file.

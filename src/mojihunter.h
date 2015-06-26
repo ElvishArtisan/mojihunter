@@ -47,10 +47,14 @@ class MainWidget : public QMainWindow
   void inputChangedData();
 
  protected:
+  void closeEvent(QCloseEvent *e);
   void resizeEvent(QResizeEvent *e);
 
  private:
   void Process();
+  void LoadDefaults();
+  void SaveDefaults() const;
+  QString ConfigurationFilename() const;
   QString InsertionSql() const;
   QString SqlEscape(const QString &str) const;
   QLabel *moji_db_type_label;
@@ -63,6 +67,8 @@ class MainWidget : public QMainWindow
   QLineEdit *moji_db_username_edit;
   QLabel *moji_db_password_label;
   QLineEdit *moji_db_password_edit;
+  QLabel *moji_charset_label;
+  QLineEdit *moji_charset_edit;
   QLabel *moji_input_label;
   QTextEdit *moji_input_text;
   QLabel *moji_result_label;

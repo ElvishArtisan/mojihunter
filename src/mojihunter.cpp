@@ -18,11 +18,17 @@
 //   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 //
 
+#include <stdio.h>
+#include <stdlib.h>
+
 #include <qapplication.h>
+#include <qfile.h>
 #include <qmessagebox.h>
 #include <qsqldatabase.h>
+#include <qtextstream.h>
 
 #include "mojihunter.h"
+#include "profile.h"
 
 MainWidget::MainWidget(QWidget *parent)
   :QMainWindow(parent)
@@ -101,6 +107,15 @@ MainWidget::MainWidget(QWidget *parent)
   moji_db_password_label->setFont(label_font);
 
   //
+  // DB Character Set
+  //
+  moji_charset_edit=new QLineEdit(this);
+  moji_charset_label=
+    new QLabel(moji_charset_edit,tr("Character Set")+":",this);
+  moji_charset_label->setAlignment(Qt::AlignRight|Qt::AlignVCenter);
+  moji_charset_label->setFont(label_font);
+
+  //
   // Process Button
   //
   moji_process_button=new QPushButton(tr("Process"),this);
@@ -138,13 +153,14 @@ MainWidget::MainWidget(QWidget *parent)
   moji_result_label->setAlignment(Qt::AlignLeft|Qt::AlignVCenter);
   moji_result_label->setFont(label_font);
 
+  LoadDefaults();
   setMinimumSize(sizeHint());
 }
 
 
 QSize MainWidget::sizeHint() const
 {
-  return QSize(400,600);
+  return QSize(400,622);
 }
 
 
@@ -173,6 +189,13 @@ void MainWidget::inputChangedData()
 }
 
 
+void MainWidget::closeEvent(QCloseEvent *e)
+{
+  SaveDefaults();
+  qApp->quit();
+}
+
+
 void MainWidget::resizeEvent(QResizeEvent *e)
 {
   moji_db_type_label->setGeometry(10,10,120,20);
@@ -190,18 +213,21 @@ void MainWidget::resizeEvent(QResizeEvent *e)
   moji_db_password_label->setGeometry(10,98,120,20);
   moji_db_password_edit->setGeometry(135,98,size().width()-145,20);
 
-  moji_process_button->setGeometry(145,125,100,33);
+  moji_charset_label->setGeometry(10,120,120,20);
+  moji_charset_edit->setGeometry(135,120,size().width()-145,20);
 
-  moji_sql_button->setGeometry(size().width()-120,125,100,33);
+  moji_process_button->setGeometry(145,147,100,33);
 
-  moji_input_label->setGeometry(15,155,100,20);
+  moji_sql_button->setGeometry(size().width()-120,147,100,33);
+
+  moji_input_label->setGeometry(15,177,100,20);
   moji_input_text->
-    setGeometry(10,175,size().width()-20,(size().height()-152)/2-32);
+    setGeometry(10,197,size().width()-20,(size().height()-152)/2-32);
 
-  moji_result_label->setGeometry(15,170+(size().height()-152)/2-22,100,20);
+  moji_result_label->setGeometry(15,192+(size().height()-152)/2-22,100,20);
   moji_result_text->
-    setGeometry(10,190+(size().height()-152)/2-22,
-		size().width()-20,(size().height()-152)/2-22);
+    setGeometry(10,212+(size().height()-152)/2-22,
+		size().width()-20,(size().height()-152)/2-42);
 }
 
 
@@ -254,6 +280,73 @@ void MainWidget::Process()
   delete q;
 
   QSqlDatabase::removeDatabase(db);
+}
+
+
+void MainWidget::LoadDefaults()
+{
+  QString filename=ConfigurationFilename();
+  Profile *p=new Profile();
+
+  if(filename.isEmpty()) {
+    return;
+  }
+  p->setSource(filename);
+  for(int i=0;i<moji_db_type_box->count();i++) {
+    if(moji_db_type_box->text(i)==
+       p->stringValue("MojiHunter","DbType","QMYSQL3")) {
+      moji_db_type_box->setCurrentItem(i);
+    }
+  }
+  moji_db_dbname_edit->setText(p->stringValue("MojiHunter","DbName"));
+  moji_db_hostname_edit->
+    setText(p->stringValue("MojiHunter","Hostname","localhost"));
+  moji_db_username_edit->setText(p->stringValue("MojiHunter","Username"));
+  moji_db_password_edit->setText(p->stringValue("MojiHunter","Password"));
+  moji_charset_edit->setText(p->stringValue("MojiHunter","Charset","latin1"));
+  delete p;
+}
+
+
+void MainWidget::SaveDefaults() const
+{
+  QFile *file;
+  QString filename=ConfigurationFilename();
+  QTextStream *out;
+
+  if(filename.isEmpty()) {
+    return;
+  }
+  file=new QFile(filename+"_tmp");
+  if(!file->open(IO_WriteOnly|IO_Truncate)) {
+    delete file;
+    return;
+  }
+  out=new QTextStream(file);
+  *out << "[MojiHunter]\n";
+  *out << "DbType=" << moji_db_type_box->currentText() << "\n";
+  *out << "DbName=" << moji_db_dbname_edit->text() << "\n";
+  *out << "Hostname=" << moji_db_hostname_edit->text() << "\n";
+  *out << "Username=" << moji_db_username_edit->text() << "\n";
+  *out << "Password=" << moji_db_password_edit->text() << "\n";
+  *out << "Charset=" << moji_charset_edit->text() << "\n";
+
+  delete out;
+  file->close();
+  delete file;
+  rename(filename+"_tmp",filename);
+}
+
+
+QString MainWidget::ConfigurationFilename() const
+{
+  QString ret="";
+
+  if(getenv("HOME")!=NULL) {
+    ret=QString(getenv("HOME"))+"/.mojihunterrc";
+  }
+
+  return ret;
 }
 
 

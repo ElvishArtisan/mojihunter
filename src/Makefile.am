@@ -30,6 +30,7 @@ moc_%.cpp:	%.h
 bin_PROGRAMS = mojihunter
 
 dist_mojihunter_SOURCES = mojihunter.cpp mojihunter.h\
+                          profile.cpp profile.h\
                           textviewer.cpp textviewer.h
 
 nodist_mojihunter_SOURCES = moc_mojihunter.cpp\
