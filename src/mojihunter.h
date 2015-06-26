@@ -26,6 +26,7 @@
 #include <qsizepolicy.h>
 #include <qtextedit.h>
 #include <qpushbutton.h>
+#include <qsqldatabase.h>
 #include <qlabel.h>
 #include <qlineedit.h>
 #include <qcombobox.h>
@@ -54,6 +55,7 @@ class MainWidget : public QMainWindow
   void Process();
   void LoadDefaults();
   void SaveDefaults() const;
+  void PrintDbError(const QString &type);
   QString ConfigurationFilename() const;
   QString InsertionSql() const;
   QString SqlEscape(const QString &str) const;
@@ -77,6 +79,7 @@ class MainWidget : public QMainWindow
   QPushButton *moji_sql_button;
   QPushButton *moji_exit_button;
   TextViewer *moji_text_viewer;
+  QSqlDatabase *moji_db;
 };
 
 

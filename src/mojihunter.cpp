@@ -33,6 +33,8 @@
 MainWidget::MainWidget(QWidget *parent)
   :QMainWindow(parent)
 {
+  moji_db=NULL;
+
   //
   // Create Fonts
   //
@@ -233,45 +235,62 @@ void MainWidget::resizeEvent(QResizeEvent *e)
 
 void MainWidget::Process()
 {
-  QSqlDatabase *db=NULL;
   QString sql;
   QSqlQuery *q;
 
-  db=QSqlDatabase::addDatabase(moji_db_type_box->currentText());
-  if(!db) {
-    QMessageBox::critical(this,tr("MojiHunter")+" - "+tr("Database Error"),
-			  tr("Unable to open DB connection."));
+  //
+  // Open DB Connection
+  //
+  moji_db=QSqlDatabase::addDatabase(moji_db_type_box->currentText());
+  if(!moji_db) {
+    PrintDbError(tr("Database initialization error"));
     return;
   }
-  db->setDatabaseName(moji_db_dbname_edit->text());
-  db->setHostName(moji_db_hostname_edit->text());
-  db->setUserName(moji_db_username_edit->text());
-  db->setPassword(moji_db_password_edit->text());
-  if(!db->open()) {
-    QMessageBox::critical(this,tr("MojiHunter")+" - "+tr("Database Error"),
-			  tr("Unable to connect to database")+"\n"+
-			  db->lastError().text()+".");
-    QSqlDatabase::removeDatabase(db);
+  moji_db->setDatabaseName(moji_db_dbname_edit->text());
+  moji_db->setHostName(moji_db_hostname_edit->text());
+  moji_db->setUserName(moji_db_username_edit->text());
+  moji_db->setPassword(moji_db_password_edit->text());
+  if(!moji_db->open()) {
+    PrintDbError(tr("Database connection error"));
+    QSqlDatabase::removeDatabase(moji_db);
     return;
   }
+
+  //
+  // (Perhaps) set the connection character set
+  //
+  if(!moji_charset_edit->text().isEmpty()) {
+    sql=QString("set names ")+moji_charset_edit->text();
+    q=new QSqlQuery(sql);
+    if(!q->isActive()) {
+      PrintDbError(tr("SQL SET NAMES error"));
+      delete q;
+      QSqlDatabase::removeDatabase(moji_db);
+      return;
+    }
+  }
+
+  //
+  // Insert the Row
+  //
   q=new QSqlQuery(InsertionSql());
   if(!q->isActive()) {
-    QMessageBox::warning(this,tr("Mojihunter")+" - "+tr("Insertion SQL Error"),
-			 tr("SQL Error")+":\n"+db->lastError().text());
+    PrintDbError(tr("SQL INSERT error"));
     delete q;
-    QSqlDatabase::removeDatabase(db);
+    QSqlDatabase::removeDatabase(moji_db);
     return;
   }
   delete q;
 
+  //
+  // Read back the Row
+  //
   sql=QString("select MOJIFIELD from MOJITABLE ")+
     "where ID=LAST_INSERT_ID()";
   q=new QSqlQuery(sql);
   if(!q->isActive()) {
-    QMessageBox::warning(this,tr("Mojihunter")+" - "+tr("Select SQL Error"),
-			 tr("SQL Error")+":\n"+db->lastError().text());
-    delete q;
-    QSqlDatabase::removeDatabase(db);
+    PrintDbError(tr("SQL SELECT error"));
+    QSqlDatabase::removeDatabase(moji_db);
     return;
   }
   if(q->first()) {
@@ -279,7 +298,7 @@ void MainWidget::Process()
   }
   delete q;
 
-  QSqlDatabase::removeDatabase(db);
+  QSqlDatabase::removeDatabase(moji_db);
 }
 
 
@@ -335,6 +354,18 @@ void MainWidget::SaveDefaults() const
   file->close();
   delete file;
   rename(filename+"_tmp",filename);
+}
+
+
+void MainWidget::PrintDbError(const QString &type)
+{
+  QString errtxt=type;
+  if(!moji_db->lastError().databaseText().isEmpty()) {
+    errtxt+=":\n"+moji_db->lastError().databaseText();
+  }
+  errtxt+=".";
+
+  QMessageBox::warning(this,tr("Mojihunter")+" - "+tr("DB Error"),errtxt);
 }
 
 

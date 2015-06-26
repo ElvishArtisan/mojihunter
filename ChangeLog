@@ -7,3 +7,7 @@
 2015-06-26 Fred Gleason <fredg@paravelsystems.com>
 	* Added 'src/profile.cpp' and 'src/profile.h'.
 	* Implemented parameter caching via a $(HOME)/.mojihunterrc file.
+2015-06-26 Fred Gleason <fredg@paravelsystems.com>
+	* Optimized error reporting in 'src/mojihunter.cpp' and
+	'src/mojihunter.h'.
+	* Implemented the SQL 'SET NAMES' command.
