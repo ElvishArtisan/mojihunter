@@ -12,4 +12,5 @@ Makefile
 Makefile.in
 missing
 moc_*
-src/mojihunter
+src/qt3/mojihunter
+src/qt4/mojihunter
