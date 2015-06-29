@@ -31,12 +31,19 @@ AC_PROG_CXX
 AC_LANG(C++)
 
 #
-# Check for Qt
+# Check for Qt3
 #
 BNV_HAVE_QT
 if test $have_qt = "no" ; then
   AC_MSG_ERROR([*** Qt3 toolkit not found, unable to continue ***])
 fi
+
+#
+# Check for Qt4
+#
+AC_CHECK_HEADER(QtCore/QtCore,[],[AC_MSG_ERROR([*** Qt4 not found ***])])
+AC_CHECK_PROG(MOC_NAME,moc-qt4,[moc-qt4],[moc])
+AC_SUBST(MOC,$MOC_NAME)
 
 #
 # Determine the target architecture
@@ -54,6 +61,8 @@ AC_SUBST(DISTRO,$ar_gcc_distro)
 
 AC_CONFIG_FILES([ \
     src/Makefile \
+    src/qt3/Makefile \
+    src/qt4/Makefile \
     Makefile \
     ])
 AC_OUTPUT()
