@@ -20,5 +20,10 @@
 ##
 ## Use automake to process this into a Makefile.in
 
-SUBDIRS = qt3\
-          qt4
+if MOJI_QT3
+  MOJI_QT3_OPT = qt3
+endif
+if MOJI_QT4
+  MOJI_QT4_OPT = qt4
+endif
+SUBDIRS = $(MOJI_QT3_OPT) $(MOJI_QT4_OPT)

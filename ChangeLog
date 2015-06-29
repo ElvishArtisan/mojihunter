@@ -15,3 +15,6 @@
 	* Implemented SQL string literal escapes.
 2015-06-29 Fred Gleason <fredg@paravelsystems.com>
 	* Added Qt4 version.
+2015-06-29 Fred Gleason <fredg@paravelsystems.com>
+	* Added conditional to build only the versions for which the
+	appropriate Qt version is detected.

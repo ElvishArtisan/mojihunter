@@ -34,14 +34,13 @@ AC_LANG(C++)
 # Check for Qt3
 #
 BNV_HAVE_QT
-if test $have_qt = "no" ; then
-  AC_MSG_ERROR([*** Qt3 toolkit not found, unable to continue ***])
-fi
+AM_CONDITIONAL([MOJI_QT3], [test "$have_qt" = yes])
 
 #
 # Check for Qt4
 #
-AC_CHECK_HEADER(QtCore/QtCore,[],[AC_MSG_ERROR([*** Qt4 not found ***])])
+AC_CHECK_HEADER(QtCore/QtCore,[have_qt4=yes],[AC_MSG_ERROR([*** Qt4 not found ***])])
+AM_CONDITIONAL([MOJI_QT4], [test "$have_qt4" = yes])
 AC_CHECK_PROG(MOC_NAME,moc-qt4,[moc-qt4],[moc])
 AC_SUBST(MOC,$MOC_NAME)
 
