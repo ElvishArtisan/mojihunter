@@ -39,7 +39,7 @@ AM_CONDITIONAL([MOJI_QT3], [test "$have_qt" = yes])
 #
 # Check for Qt4
 #
-AC_CHECK_HEADER(QtCore/QtCore,[have_qt4=yes],[AC_MSG_ERROR([*** Qt4 not found ***])])
+AC_CHECK_HEADER(QtCore/QtCore,[have_qt4=yes],[AC_MSG_ERROR()])
 AM_CONDITIONAL([MOJI_QT4], [test "$have_qt4" = yes])
 AC_CHECK_PROG(MOC_NAME,moc-qt4,[moc-qt4],[moc])
 AC_SUBST(MOC,$MOC_NAME)
@@ -69,6 +69,22 @@ AC_OUTPUT()
 #
 # Configuration Results
 #
+AC_MSG_NOTICE()
+AC_MSG_NOTICE("|------------------------------------------|")
+AC_MSG_NOTICE("| *** MOJIHUNTER CONFIGURATION SUMMARY *** |")
+AC_MSG_NOTICE("|------------------------------------------|")
+AC_MSG_NOTICE("| Detected Qt Versions:                    |")
+if test -z $have_qt ; then
+AC_MSG_NOTICE("|                         Qt 3.x ... No    |")
+else
+AC_MSG_NOTICE("|                         Qt 3.x ... Yes   |")
+fi
+if test -z $have_qt4 ; then
+AC_MSG_NOTICE("|                         Qt 4.x ... No    |")
+else
+AC_MSG_NOTICE("|                         Qt 4.x ... Yes   |")
+fi
+AC_MSG_NOTICE("|------------------------------------------|")
 AC_MSG_NOTICE()
 AC_MSG_NOTICE(Now enter 'make' to build the software.)
 AC_MSG_NOTICE()

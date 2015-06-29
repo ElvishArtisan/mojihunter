@@ -18,3 +18,7 @@
 2015-06-29 Fred Gleason <fredg@paravelsystems.com>
 	* Added conditional to build only the versions for which the
 	appropriate Qt version is detected.
+2015-06-29 Fred Gleason <fredg@paravelsystems.com>
+	* Fixed a bug in 'configure.ac' that caused an error to be thrown
+	when Qt4 was not detected.
+	* Added a configuration summary in 'configure.ac'.
