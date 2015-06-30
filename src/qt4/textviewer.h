@@ -23,7 +23,7 @@
 
 #include <QtGui/QDialog>
 #include <QtGui/QPushButton>
-#include <Qt3Support/Q3TextView>
+#include <QtGui/QTextEdit>
 
 class TextViewer : public QDialog
 {
@@ -44,7 +44,7 @@ class TextViewer : public QDialog
   void resizeEvent(QResizeEvent *e);
 
  private:
-  Q3TextView *text_view;
+  QTextEdit *text_view;
   QPushButton *text_close_button;
 };
 

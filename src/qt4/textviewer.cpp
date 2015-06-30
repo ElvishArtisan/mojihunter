@@ -26,7 +26,7 @@ TextViewer::TextViewer(QWidget *parent)
   QFont button_font("helvetica",12,QFont::Bold);
   button_font.setPixelSize(12);
 
-  text_view=new Q3TextView(this);
+  text_view=new QTextEdit(this);
   text_view->setReadOnly(true);
 
   text_close_button=new QPushButton(tr("Close"),this);

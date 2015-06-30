@@ -19,9 +19,9 @@
 ##
 ## Use automake to process this into a Makefile.in
 
-AM_CPPFLAGS = -Wall -DPREFIX=\"$(prefix)\" -pthread
-MOC = moc-qt4
-##MOC = @QT_MOC@
+AM_CPPFLAGS = -Wall -DPREFIX=\"$(prefix)\" -pthread @QT4_CFLAGS@
+##MOC = moc-qt4
+MOC = @QT4_MOC@
 
 # The dependency for qt's Meta Object Compiler (moc)
 moc_%.cpp:	%.h
@@ -36,7 +36,7 @@ dist_mojihunter_SOURCES = mojihunter.cpp mojihunter.h\
 nodist_mojihunter_SOURCES = moc_mojihunter.cpp\
                             moc_textviewer.cpp
 
-mojihunter_LDADD = -lm -lpthread -lQtCore -lQtGui -lQtSql -lQtNetwork -lQt3Support
+mojihunter_LDADD = -lm -lpthread @QT4_LIBS@
 
 CLEANFILES = *~\
              *.exe\

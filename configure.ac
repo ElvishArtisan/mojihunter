@@ -39,10 +39,12 @@ AM_CONDITIONAL([MOJI_QT3], [test "$have_qt" = yes])
 #
 # Check for Qt4
 #
-AC_CHECK_HEADER(QtCore/QtCore,[have_qt4=yes],[AC_MSG_ERROR()])
+PKG_CHECK_MODULES(QT4,QtCore QtGui QtSql QtNetwork,[have_qt4=yes],[])
 AM_CONDITIONAL([MOJI_QT4], [test "$have_qt4" = yes])
-AC_CHECK_PROG(MOC_NAME,moc-qt4,[moc-qt4],[moc])
-AC_SUBST(MOC,$MOC_NAME)
+if test $have_qt4="yes" ; then
+  AC_CHECK_PROG(MOC_NAME,moc-qt4,[moc-qt4],[moc])
+  AC_SUBST(QT4_MOC,$MOC_NAME)
+fi
 
 #
 # Determine the target architecture
