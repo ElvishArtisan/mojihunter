@@ -21,13 +21,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include <QtCore/QFile>
-#include <QtCore/QTextStream>
-#include <QtGui/QApplication>
-#include <QtGui/QMessageBox>
-#include <QtSql/QSqlDatabase>
-#include <QtSql/QSqlError>
-#include <QtSql/QSqlQuery>
+#include <QFile>
+#include <QTextStream>
+#include <QApplication>
+#include <QMessageBox>
+#include <QSqlDatabase>
+#include <QSqlError>
+#include <QSqlQuery>
 
 #include "mojihunter.h"
 #include "profile.h"

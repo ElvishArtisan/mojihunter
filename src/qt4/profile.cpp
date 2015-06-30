@@ -18,9 +18,9 @@
 //   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 //
 
-#include <QtCore/QFile>
-#include <QtCore/QTextStream>
-#include <QtCore/QStringList>
+#include <QFile>
+#include <QTextStream>
+#include <QStringList>
 
 #include "profile.h"
 

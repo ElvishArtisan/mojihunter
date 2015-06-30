@@ -28,3 +28,6 @@
 	* Removed Qt3Support dependencies in the Qt4 version of the tool.
 2015-06-30 Fred Gleason <fredg@paravelsystems.com>
 	* Added a Qt5 version in 'src/qt5/'.
+2015-06-30 Fred Gleason <fredg@paravelsystems.com>
+	* Removed leading directories in the Qt4 include statements for
+	the Qt4 version.

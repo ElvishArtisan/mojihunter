@@ -21,9 +21,9 @@
 #ifndef TEXTVIEWER_H
 #define TEXTVIEWER_H
 
-#include <QtGui/QDialog>
-#include <QtGui/QPushButton>
-#include <QtGui/QTextEdit>
+#include <QDialog>
+#include <QPushButton>
+#include <QTextEdit>
 
 class TextViewer : public QDialog
 {

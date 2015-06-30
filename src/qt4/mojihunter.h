@@ -21,14 +21,14 @@
 #ifndef QT3CHARS_H
 #define QT3CHARS_H
 
-#include <QtCore/QSize>
-#include <QtGui/QComboBox>
-#include <QtGui/QLabel>
-#include <QtGui/QLineEdit>
-#include <QtGui/QMainWindow>
-#include <QtGui/QPushButton>
-#include <QtGui/QTextEdit>
-#include <QtSql/QSqlDatabase>
+#include <QSize>
+#include <QComboBox>
+#include <QLabel>
+#include <QLineEdit>
+#include <QMainWindow>
+#include <QPushButton>
+#include <QTextEdit>
+#include <QSqlDatabase>
 
 #include "textviewer.h"
 

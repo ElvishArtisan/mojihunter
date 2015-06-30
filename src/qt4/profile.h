@@ -23,9 +23,9 @@
 
 #include <vector>
 
-#include <QtCore/QString>
-#include <QtCore/QTime>
-#include <QtNetwork/QHostAddress>
+#include <QString>
+#include <QTime>
+#include <QHostAddress>
 
 class ProfileLine
 {
