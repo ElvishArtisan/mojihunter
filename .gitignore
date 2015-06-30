@@ -14,3 +14,4 @@ missing
 moc_*
 src/qt3/mojihunter
 src/qt4/mojihunter
+src/qt5/mojihunter
