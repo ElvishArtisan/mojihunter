@@ -47,7 +47,7 @@ MainWidget::MainWidget(QWidget *parent)
   //
   // Set Window Title
   //
-  setCaption(tr("MojiHunter")+" v"+VERSION);
+  setCaption(tr("MojiHunter - Qt3"));
 
   //
   // Dialogs

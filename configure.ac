@@ -51,10 +51,6 @@ fi
 #
 PKG_CHECK_MODULES(QT5,Qt5Core Qt5Widgets Qt5Sql Qt5Network Qt5PrintSupport,[have_qt5=yes],[])
 AM_CONDITIONAL([MOJI_QT5], [test "$have_qt5" = yes])
-if test $have_qt5="yes" ; then
-  AC_CHECK_PROG(MOC_NAME,moc-qt5,[moc-qt5],[moc])
-  AC_SUBST(QT5_MOC,$MOC_NAME)
-fi
 
 #
 # Determine the target architecture

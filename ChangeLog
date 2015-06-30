@@ -31,3 +31,5 @@
 2015-06-30 Fred Gleason <fredg@paravelsystems.com>
 	* Removed leading directories in the Qt4 include statements for
 	the Qt4 version.
+2015-06-30 Fred Gleason <fredg@paravelsystems.com>
+	* Added a Qt version string to the window title for each version.
