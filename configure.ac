@@ -47,6 +47,16 @@ if test $have_qt4="yes" ; then
 fi
 
 #
+# Check for Qt5
+#
+PKG_CHECK_MODULES(QT5,Qt5Core Qt5Widgets Qt5Sql Qt5Network Qt5PrintSupport,[have_qt5=yes],[])
+AM_CONDITIONAL([MOJI_QT5], [test "$have_qt5" = yes])
+if test $have_qt5="yes" ; then
+  AC_CHECK_PROG(MOC_NAME,moc-qt5,[moc-qt5],[moc])
+  AC_SUBST(QT5_MOC,$MOC_NAME)
+fi
+
+#
 # Determine the target architecture
 #
 AR_GCC_TARGET()
@@ -64,6 +74,7 @@ AC_CONFIG_FILES([ \
     src/Makefile \
     src/qt3/Makefile \
     src/qt4/Makefile \
+    src/qt5/Makefile \
     Makefile \
     ])
 AC_OUTPUT()
@@ -85,6 +96,11 @@ if test -z $have_qt4 ; then
 AC_MSG_NOTICE("|                         Qt 4.x ... No    |")
 else
 AC_MSG_NOTICE("|                         Qt 4.x ... Yes   |")
+fi
+if test -z $have_qt5 ; then
+AC_MSG_NOTICE("|                         Qt 5.x ... No    |")
+else
+AC_MSG_NOTICE("|                         Qt 5.x ... Yes   |")
 fi
 AC_MSG_NOTICE("|------------------------------------------|")
 AC_MSG_NOTICE()

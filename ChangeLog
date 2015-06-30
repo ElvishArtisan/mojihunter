@@ -26,3 +26,5 @@
 	* Refactored detection for Qt4 to use the PKG_CHECK_MODULES() macro
 	in 'configure.ac'.
 	* Removed Qt3Support dependencies in the Qt4 version of the tool.
+2015-06-30 Fred Gleason <fredg@paravelsystems.com>
+	* Added a Qt5 version in 'src/qt5/'.
