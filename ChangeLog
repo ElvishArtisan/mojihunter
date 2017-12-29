@@ -33,3 +33,6 @@
 	the Qt4 version.
 2015-06-30 Fred Gleason <fredg@paravelsystems.com>
 	* Added a Qt version string to the window title for each version.
+2017-12-29 Fred Gleason <fredg@paravelsystems.com>
+	* Fixed bugs in 'configure.ac' that caused configure script to fail
+	when Qt4 or Qt5 were not installed.
