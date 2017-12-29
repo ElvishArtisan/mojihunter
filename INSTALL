@@ -368,3 +368,60 @@ operates.
 
 `configure' also accepts some other, not widely useful, options.  Run
 `configure --help' for more details.
+
+FONT PACKAGES
+-------------
+On RHEL-7, the following font packages are available for various languages:
+
+Japanese:
+	google-noto-sans-japanese-fonts
+
+Mandarin Chinese:
+	 google-noto-sans-simplified-chinese-fonts
+	 google-noto-sans-traditional-chinese-fonts
+
+Myanmar:
+	google-noto-sans-myanmar-fonts
+	google-noto-sans-myanmar-ui-fonts
+
+Korean:
+	google-noto-sans-korean-fonts
+
+Lao:
+	google-noto-sans-lao-fonts
+	google-noto-sans-lao-ui-fonts
+	google-noto-serif-lao-fonts
+
+Khmer:
+	khmeros-base-fonts
+	khmeros-battambang-fonts
+	khmeros-bokor-fonts
+	khmeros-fonts-common
+	khmeros-handwritten-fonts
+	khmeros-metal-chrieng-fonts
+	khmeros-muol-fonts
+	khmeros-siemreap-fonts
+
+Tibetan:
+	tibetan-machine-uni-fonts
+
+Uigyer (Arabic):
+      kacst-art-fonts
+      kacst-book-fonts
+      kacst-decorative-fonts
+      kacst-digital-fonts
+      kacst-farsi-fonts
+      kacst-letter-fonts
+      kacst-naskh-fonts
+      kacst-office-fonts
+      kacst-one-fonts
+      kacst-pen-fonts
+      kacst-poster-fonts
+      kacst-qurn-fonts
+      kacst-screen-fonts
+      kacst-title-fonts
+      kacst-titlel-fonts
+      layla-basic-arabic-fonts
+
+Viet:
+	google-noto-sans-tai-viet-fonts
