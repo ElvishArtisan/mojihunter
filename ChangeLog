@@ -41,3 +41,5 @@
 2019-09-26 Fred Gleason <fredg@paravelsystems.com>
 	* Added the '-std=c++11' switch to the compiler flags in
 	'src/qt5/Makefile.am'.
+2019-09-26 Fred Gleason <fredg@paravelsystems.com>
+	* Added a 'fonthunter3' application.

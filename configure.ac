@@ -3,7 +3,7 @@ dnl
 dnl Autoconf configuration for mojihunter
 dnl Use autoconf to process this into a configure script
 dnl
-dnl   (C) Copyright 2015 Fred Gleason <fredg@paravelsystems.com>
+dnl   (C) Copyright 2015-2019 Fred Gleason <fredg@paravelsystems.com>
 dnl
 dnl   This program is free software; you can redistribute it and/or modify
 dnl   it under the terms of the GNU General Public License version 2 as
@@ -70,9 +70,12 @@ AC_SUBST(DISTRO,$ar_gcc_distro)
 
 AC_CONFIG_FILES([ \
     src/Makefile \
-    src/qt3/Makefile \
-    src/qt4/Makefile \
-    src/qt5/Makefile \
+    src/fonthunter/Makefile \
+    src/fonthunter/qt3/Makefile \
+    src/mojihunter/Makefile \
+    src/mojihunter/qt3/Makefile \
+    src/mojihunter/qt4/Makefile \
+    src/mojihunter/qt5/Makefile \
     Makefile \
     ])
 AC_OUTPUT()
