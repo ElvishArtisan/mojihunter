@@ -43,3 +43,5 @@
 	'src/qt5/Makefile.am'.
 2019-09-26 Fred Gleason <fredg@paravelsystems.com>
 	* Added a 'fonthunter3' application.
+2019-09-26 Fred Gleason <fredg@paravelsystems.com>
+	* Added a 'fonthunter4' application.
