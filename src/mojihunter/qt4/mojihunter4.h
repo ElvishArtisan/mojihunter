@@ -1,8 +1,8 @@
-// mojihunter.h
+// mojihunter4.h
 //
 // A utility for testing RDBMS for character fidelity.
 //
-//   (C) Copyright 2015 Fred Gleason <fredg@paravelsystems.com>
+//   (C) Copyright 2015-2019 Fred Gleason <fredg@paravelsystems.com>
 //
 //   This program is free software; you can redistribute it and/or modify
 //   it under the terms of the GNU General Public License version 2 as
@@ -18,8 +18,8 @@
 //   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 //
 
-#ifndef QT3CHARS_H
-#define QT3CHARS_H
+#ifndef MOJIHUNTER4_H
+#define MOJIHUNTER4_H
 
 #include <QSize>
 #include <QComboBox>
@@ -81,4 +81,4 @@ class MainWidget : public QMainWindow
 };
 
 
-#endif  // mojihunter_H
+#endif  // MOJIHUNTER4_H

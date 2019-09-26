@@ -29,7 +29,7 @@
 #include <QSqlError>
 #include <QSqlQuery>
 
-#include "mojihunter.h"
+#include "mojihunter4.h"
 #include "profile.h"
 
 MainWidget::MainWidget(QWidget *parent)
@@ -47,7 +47,7 @@ MainWidget::MainWidget(QWidget *parent)
   //
   // Set Window Title
   //
-  setWindowTitle(tr("MojiHunter - Qt4"));
+  setWindowTitle(tr("MojiHunter4 - Qt4"));
 
   //
   // Dialogs
