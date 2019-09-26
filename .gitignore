@@ -12,6 +12,9 @@ Makefile
 Makefile.in
 missing
 moc_*
-src/qt3/mojihunter
-src/qt4/mojihunter
-src/qt5/mojihunter
+src/fonthunter/qt3/fonthunter3
+src/fonthunter/qt4/fonthunter4
+src/fonthunter/qt5/fonthunter5
+src/mojihunter/qt3/mojihunter3
+src/mojihunter/qt4/mojihunter4
+src/mojihunter/qt5/mojihunter5
