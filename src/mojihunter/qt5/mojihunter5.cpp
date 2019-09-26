@@ -2,7 +2,7 @@
 //
 // A utility for testing RDBMS for character fidelity.
 //
-//   (C) Copyright 2015 Fred Gleason <fredg@paravelsystems.com>
+//   (C) Copyright 2015-2019 Fred Gleason <fredg@paravelsystems.com>
 //
 //   This program is free software; you can redistribute it and/or modify
 //   it under the terms of the GNU General Public License version 2 as
@@ -21,15 +21,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include <QFile>
-#include <QTextStream>
 #include <QApplication>
+#include <QFile>
 #include <QMessageBox>
 #include <QSqlDatabase>
 #include <QSqlError>
 #include <QSqlQuery>
+#include <QTextStream>
 
-#include "mojihunter.h"
+#include "mojihunter5.h"
 #include "profile.h"
 
 MainWidget::MainWidget(QWidget *parent)
@@ -47,7 +47,7 @@ MainWidget::MainWidget(QWidget *parent)
   //
   // Set Window Title
   //
-  setWindowTitle(tr("MojiHunter - Qt5"));
+  setWindowTitle(tr("MojiHunter5 - Qt5"));
 
   //
   // Dialogs

@@ -1,8 +1,6 @@
-## automake.am
+## Makefile.am
 ##
-## Automake.am for mojihunter/src/qt5
-##
-##   (C) Copyright 2015 Fred Gleason <fredg@paravelsystems.com>
+##   (C) Copyright 2015-2019 Fred Gleason <fredg@paravelsystems.com>
 ##
 ##   This program is free software; you can redistribute it and/or modify
 ##   it under the terms of the GNU General Public License version 2 as
@@ -26,16 +24,16 @@ MOC = moc-qt5
 moc_%.cpp:	%.h
 	$(MOC) $< -o $@
 
-bin_PROGRAMS = mojihunter
+bin_PROGRAMS = mojihunter5
 
-dist_mojihunter_SOURCES = mojihunter.cpp mojihunter.h\
-                          profile.cpp profile.h\
-                          textviewer.cpp textviewer.h
+dist_mojihunter5_SOURCES = mojihunter5.cpp mojihunter5.h\
+                           profile.cpp profile.h\
+                           textviewer.cpp textviewer.h
 
-nodist_mojihunter_SOURCES = moc_mojihunter.cpp\
-                            moc_textviewer.cpp
+nodist_mojihunter5_SOURCES = moc_mojihunter5.cpp\
+                             moc_textviewer.cpp
 
-mojihunter_LDADD = -lm -lpthread @QT5_LIBS@
+mojihunter5_LDADD = -lm -lpthread @QT5_LIBS@
 
 CLEANFILES = *~\
              *.exe\
