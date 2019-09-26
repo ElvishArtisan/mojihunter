@@ -1,8 +1,8 @@
-// mojihunter.cpp
+// mojihunter3.cpp
 //
 // A utility for testing RDBMS for character fidelity.
 //
-//   (C) Copyright 2015 Fred Gleason <fredg@paravelsystems.com>
+//   (C) Copyright 2015-2019 Fred Gleason <fredg@paravelsystems.com>
 //
 //   This program is free software; you can redistribute it and/or modify
 //   it under the terms of the GNU General Public License version 2 as
@@ -27,7 +27,7 @@
 #include <qsqldatabase.h>
 #include <qtextstream.h>
 
-#include "mojihunter.h"
+#include "mojihunter3.h"
 #include "profile.h"
 
 MainWidget::MainWidget(QWidget *parent)
@@ -47,7 +47,7 @@ MainWidget::MainWidget(QWidget *parent)
   //
   // Set Window Title
   //
-  setCaption(tr("MojiHunter - Qt3"));
+  setCaption(tr("MojiHunter3 - Qt3"));
 
   //
   // Dialogs
@@ -365,7 +365,7 @@ void MainWidget::PrintDbError(const QString &type)
   }
   errtxt+=".";
 
-  QMessageBox::warning(this,tr("Mojihunter")+" - "+tr("DB Error"),errtxt);
+  QMessageBox::warning(this,tr("MojiHunter3")+" - "+tr("DB Error"),errtxt);
 }
 
 

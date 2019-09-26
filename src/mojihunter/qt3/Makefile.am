@@ -1,8 +1,6 @@
-## automake.am
+## Makefile.am
 ##
-## Automake.am for mojihunter/src
-##
-##   (C) Copyright 2015 Fred Gleason <fredg@paravelsystems.com>
+##   (C) Copyright 2015-2019 Fred Gleason <fredg@paravelsystems.com>
 ##
 ##   This program is free software; you can redistribute it and/or modify
 ##   it under the terms of the GNU General Public License version 2 as
@@ -27,16 +25,16 @@ MOC = @QT_MOC@
 moc_%.cpp:	%.h
 	$(MOC) $< -o $@
 
-bin_PROGRAMS = mojihunter
+bin_PROGRAMS = mojihunter3
 
-dist_mojihunter_SOURCES = mojihunter.cpp mojihunter.h\
-                          profile.cpp profile.h\
-                          textviewer.cpp textviewer.h
+dist_mojihunter3_SOURCES = mojihunter3.cpp mojihunter3.h\
+                           profile.cpp profile.h\
+                           textviewer.cpp textviewer.h
 
-nodist_mojihunter_SOURCES = moc_mojihunter.cpp\
-                            moc_textviewer.cpp
+nodist_mojihunter3_SOURCES = moc_mojihunter3.cpp\
+                             moc_textviewer.cpp
 
-mojihunter_LDADD = -lm -lpthread -lqui
+mojihunter3_LDADD = -lm -lpthread -lqui
 
 CLEANFILES = *~\
              *.exe\
