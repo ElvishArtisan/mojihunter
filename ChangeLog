@@ -38,3 +38,6 @@
 	when Qt4 or Qt5 were not installed.
 2017-12-29 Fred Gleason <fredg@paravelsystems.com>
 	* Added a list of available font RHEL7 font packages in 'INSTALL'.
+2019-09-26 Fred Gleason <fredg@paravelsystems.com>
+	* Added the '-std=c++11' switch to the compiler flags in
+	'src/qt5/Makefile.am'.

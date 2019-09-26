@@ -19,7 +19,7 @@
 ##
 ## Use automake to process this into a Makefile.in
 
-AM_CPPFLAGS = -Wall -DPREFIX=\"$(prefix)\" -pthread -fPIC @QT5_CFLAGS@
+AM_CPPFLAGS = -Wall -DPREFIX=\"$(prefix)\" -pthread -fPIC -std=c++11 @QT5_CFLAGS@
 MOC = moc-qt5
 
 # The dependency for qt's Meta Object Compiler (moc)
