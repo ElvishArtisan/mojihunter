@@ -1,4 +1,4 @@
-// fonthunter4.cpp
+// fonthunter5.cpp
 //
 // A utility for testing fonts.
 //
@@ -27,7 +27,7 @@
 #include <QResizeEvent>
 #include <QStringList>
 
-#include "fonthunter4.h"
+#include "fonthunter5.h"
 
 MainWidget::MainWidget(QWidget *parent)
   : QWidget(parent)
@@ -40,7 +40,7 @@ MainWidget::MainWidget(QWidget *parent)
   //
   // Set Window Title
   //
-  setWindowTitle(tr("FontHunter - Qt4"));
+  setWindowTitle(tr("FontHunter - Qt5"));
   setMinimumSize(sizeHint());
 
   //

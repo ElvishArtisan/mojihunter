@@ -1,4 +1,4 @@
-// fonthunter4.h
+// fonthunter5.h
 //
 // A utility for testing fonts.
 //
@@ -18,8 +18,8 @@
 //   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 //
 
-#ifndef FONTHUNTER4_H
-#define FONTHUNTER4_H
+#ifndef FONTHUNTER5_H
+#define FONTHUNTER5_H
 
 #include <vector>
 
@@ -89,4 +89,4 @@ class MainWidget : public QWidget
 };
 
 
-#endif  // FONTHUNTER4_H
+#endif  // FONTHUNTER5_H

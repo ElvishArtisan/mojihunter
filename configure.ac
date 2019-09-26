@@ -73,6 +73,7 @@ AC_CONFIG_FILES([ \
     src/fonthunter/Makefile \
     src/fonthunter/qt3/Makefile \
     src/fonthunter/qt4/Makefile \
+    src/fonthunter/qt5/Makefile \
     src/mojihunter/Makefile \
     src/mojihunter/qt3/Makefile \
     src/mojihunter/qt4/Makefile \
