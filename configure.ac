@@ -90,7 +90,7 @@ AC_MSG_NOTICE("|------------------------------------------|")
 AC_MSG_NOTICE("| *** MOJIHUNTER CONFIGURATION SUMMARY *** |")
 AC_MSG_NOTICE("|------------------------------------------|")
 AC_MSG_NOTICE("| Detected Qt Versions:                    |")
-if test -z $have_qt ; then
+if test "$have_qt" = no ; then
 AC_MSG_NOTICE("|                         Qt 3.x ... No    |")
 else
 AC_MSG_NOTICE("|                         Qt 3.x ... Yes   |")

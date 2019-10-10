@@ -53,3 +53,6 @@
 	* Renamed the Qt4 version of 'mojihunter' to 'mojihunter4'.
 2019-09-26 Fred Gleason <fredg@paravelsystems.com>
 	* Renamed the Qt5 version of 'mojihunter' to 'mojihunter5'.
+2019-10-10 Fred Gleason <fredg@paravelsystems.com>
+	* Fixed a bug in the build system that falsely indicated detection
+	of Qt3.
