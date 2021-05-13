@@ -238,40 +238,40 @@ void MainWidget::resizeEvent(QResizeEvent *e)
 {
   int w=width();
 
-  font_family_label->setGeometry(10,2,100,20);
-  font_family_edit->setGeometry(115,2,w-125,20);
+  font_family_label->setGeometry(10,2,100,30);
+  font_family_edit->setGeometry(115,2,w-125,30);
 
-  font_size_label->setGeometry(10,27,100,20);
-  font_size_spin->setGeometry(115,27,w-125,20);
+  font_size_label->setGeometry(10,37,100,30);
+  font_size_spin->setGeometry(115,37,w-125,30);
 
-  font_weight_label->setGeometry(10,52,100,20);
-  font_weight_box->setGeometry(115,52,w-125,20);
+  font_weight_label->setGeometry(10,72,100,30);
+  font_weight_box->setGeometry(115,72,w-125,30);
 
-  font_italic_label->setGeometry(10,77,100,20);
-  font_italic_box->setGeometry(115,77,60,20);
+  font_italic_label->setGeometry(10,107,100,30);
+  font_italic_box->setGeometry(115,107,60,30);
 
-  font_apply_button->setGeometry(10,102,w-20,40);
+  font_apply_button->setGeometry(10,142,w-20,40);
 
-  font_metric_exact_match_label->setGeometry(10,150,100,20);
-  font_metric_exact_match_value->setGeometry(115,150,w-20,20);
+  font_metric_exact_match_label->setGeometry(10,190,100,20);
+  font_metric_exact_match_value->setGeometry(115,190,w-20,20);
 
-  font_metric_family_label->setGeometry(10,175,100,20);
-  font_metric_family_value->setGeometry(115,175,w-20,20);
+  font_metric_family_label->setGeometry(10,215,100,20);
+  font_metric_family_value->setGeometry(115,215,w-20,20);
 
-  font_metric_size_label->setGeometry(10,200,100,20);
-  font_metric_size_value->setGeometry(115,200,w-20,20);
+  font_metric_size_label->setGeometry(10,240,100,20);
+  font_metric_size_value->setGeometry(115,240,w-20,20);
 
-  font_metric_weight_label->setGeometry(10,225,100,20);
-  font_metric_weight_value->setGeometry(115,225,w-20,20);
+  font_metric_weight_label->setGeometry(10,265,100,20);
+  font_metric_weight_value->setGeometry(115,265,w-20,20);
 
-  font_metric_bold_label->setGeometry(10,250,100,20);
-  font_metric_bold_value->setGeometry(115,250,w-20,20);
+  font_metric_bold_label->setGeometry(10,290,100,20);
+  font_metric_bold_value->setGeometry(115,290,w-20,20);
 
-  font_metric_italic_label->setGeometry(10,275,100,20);
-  font_metric_italic_value->setGeometry(115,275,w-20,20);
+  font_metric_italic_label->setGeometry(10,315,100,20);
+  font_metric_italic_value->setGeometry(115,315,w-20,20);
 
   QFont test_font=font_sample_label->font();
-  int ypos=310;
+  int ypos=350;
 
   font_sample_label_label->setGeometry(20,ypos,w-30,20);
   ypos+=20;

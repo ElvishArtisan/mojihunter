@@ -58,3 +58,5 @@
 	of Qt3.
 2021-05-13 Fred Gleason <fredg@paravelsystems.com>
 	* Fixed a bug that broke the build on Ubuntu 20.04.
+2021-05-13 Fred Gleason <fredg@paravelsystems.com>
+	* Tweaked the layout of 'fonthunter5'.
