@@ -56,3 +56,5 @@
 2019-10-10 Fred Gleason <fredg@paravelsystems.com>
 	* Fixed a bug in the build system that falsely indicated detection
 	of Qt3.
+2021-05-13 Fred Gleason <fredg@paravelsystems.com>
+	* Fixed a bug that broke the build on Ubuntu 20.04.

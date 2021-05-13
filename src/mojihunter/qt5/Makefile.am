@@ -1,6 +1,6 @@
 ## Makefile.am
 ##
-##   (C) Copyright 2015-2019 Fred Gleason <fredg@paravelsystems.com>
+##   (C) Copyright 2015-2021 Fred Gleason <fredg@paravelsystems.com>
 ##
 ##   This program is free software; you can redistribute it and/or modify
 ##   it under the terms of the GNU General Public License version 2 as
@@ -18,7 +18,7 @@
 ## Use automake to process this into a Makefile.in
 
 AM_CPPFLAGS = -Wall -DPREFIX=\"$(prefix)\" -pthread -fPIC -std=c++11 @QT5_CFLAGS@
-MOC = moc-qt5
+MOC = @QT5_MOC@
 
 # The dependency for qt's Meta Object Compiler (moc)
 moc_%.cpp:	%.h

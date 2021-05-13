@@ -3,7 +3,7 @@ dnl
 dnl Autoconf configuration for mojihunter
 dnl Use autoconf to process this into a configure script
 dnl
-dnl   (C) Copyright 2015-2019 Fred Gleason <fredg@paravelsystems.com>
+dnl   (C) Copyright 2015-2021 Fred Gleason <fredg@paravelsystems.com>
 dnl
 dnl   This program is free software; you can redistribute it and/or modify
 dnl   it under the terms of the GNU General Public License version 2 as
@@ -53,6 +53,12 @@ fi
 #
 PKG_CHECK_MODULES(QT5,Qt5Core Qt5Widgets Qt5Sql Qt5Network Qt5PrintSupport,[have_qt5=yes],[have_qt5=no])
 AM_CONDITIONAL([MOJI_QT5], [test "$have_qt5" = yes])
+if test $have_qt5="yes" ; then
+  AC_CHECK_PROG(MOC_NAME,moc-qt5,[moc-qt5],[moc])
+  AC_SUBST(QT5_MOC,$MOC_NAME)
+else
+  AC_SUBST(QT5_MOC,"")
+fi
 
 #
 # Determine the target architecture
