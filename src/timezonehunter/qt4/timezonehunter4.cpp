@@ -155,8 +155,9 @@ void MainWidget::tzidActivatedData(const QString &tzid)
 
 void MainWidget::applyData()
 {
-  d_local_time_edit->setText(d_tzmap->
-	     convert(d_utc_time_edit->dateTime()).toString(Qt::ISODate));
+  QString name;
+  QDateTime lcl=d_tzmap->convert(d_utc_time_edit->dateTime(),&name);
+  d_local_time_edit->setText(lcl.toString(Qt::ISODate)+" "+name);
 }
 
 

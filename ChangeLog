@@ -62,3 +62,6 @@
 	* Tweaked the layout of 'fonthunter5'.
 2024-03-22 Fred Gleason <fredg@paravelsystems.com>
 	* Added 'timezonehunter4' for analyzing TZ zone maps.
+2024-03-22 Fred Gleason <fredg@paravelsystems.com>
+	* Added a time offset abbreviation to the local time readout in
+	timezonehunter(1).
