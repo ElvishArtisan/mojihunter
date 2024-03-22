@@ -54,8 +54,9 @@ fi
 PKG_CHECK_MODULES(QT5,Qt5Core Qt5Widgets Qt5Sql Qt5Network Qt5PrintSupport,[have_qt5=yes],[have_qt5=no])
 AM_CONDITIONAL([MOJI_QT5], [test "$have_qt5" = yes])
 if test $have_qt5="yes" ; then
-  AC_CHECK_PROG(MOC_NAME,moc-qt5,[moc-qt5],[moc])
-  AC_SUBST(QT5_MOC,$MOC_NAME)
+  AC_CHECK_PROG(MOC5_NAME,moc-qt5,[moc-qt5],[moc])
+  echo "MOC5: $MOC5_NAME"
+  AC_SUBST(QT5_MOC,$MOC5_NAME)
 else
   AC_SUBST(QT5_MOC,"")
 fi
@@ -84,6 +85,8 @@ AC_CONFIG_FILES([ \
     src/mojihunter/qt3/Makefile \
     src/mojihunter/qt4/Makefile \
     src/mojihunter/qt5/Makefile \
+    src/timezonehunter/Makefile \
+    src/timezonehunter/qt4/Makefile \
     Makefile \
     ])
 AC_OUTPUT()

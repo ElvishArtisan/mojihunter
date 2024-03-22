@@ -60,3 +60,5 @@
 	* Fixed a bug that broke the build on Ubuntu 20.04.
 2021-05-13 Fred Gleason <fredg@paravelsystems.com>
 	* Tweaked the layout of 'fonthunter5'.
+2024-03-22 Fred Gleason <fredg@paravelsystems.com>
+	* Added 'timezonehunter4' for analyzing TZ zone maps.

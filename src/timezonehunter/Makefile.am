@@ -1,6 +1,6 @@
-## automake.am
+## Makefile.am
 ##
-## Automake.am for mojihunter/src
+## Makefile.am for mojihunter/src/timezonehunter
 ##
 ##   (C) Copyright 2015-2024 Fred Gleason <fredg@paravelsystems.com>
 ##
@@ -20,6 +20,13 @@
 ##
 ## Use automake to process this into a Makefile.in
 
-SUBDIRS = fonthunter\
-          mojihunter\
-          timezonehunter
+#if MOJI_QT3
+#  MOJI_TIMEZONEHUNTER_QT3_OPT = qt3
+#endif
+if MOJI_QT4
+  MOJI_TIMEZONEHUNTER_QT4_OPT = qt4
+endif
+#if MOJI_QT5
+#  MOJI_TIMEZONEHUNTER_QT5_OPT = qt5
+#endif
+SUBDIRS = $(MOJI_TIMEZONEHUNTER_QT3_OPT) $(MOJI_TIMEZONEHUNTER_QT4_OPT) $(MOJI_TIMEZONEHUNTER_QT5_OPT)
