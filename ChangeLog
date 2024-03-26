@@ -65,3 +65,5 @@
 2024-03-22 Fred Gleason <fredg@paravelsystems.com>
 	* Added a time offset abbreviation to the local time readout in
 	timezonehunter(1).
+2024-03-26 Fred Gleason <fredg@paravelsystems.com>
+	* Added 'Offset' and 'IP_DUP Flag' readouts to 'timezonehunter4'.

@@ -41,8 +41,12 @@ class TzMap
  public:
   TzMap();
   QString name() const;
-  QDateTime convert(const QDateTime &utc,QString *tz_name=NULL) const;
+  QDateTime convert(const QDateTime &utc,QString *tz_name=NULL,
+		    int *offset_secs=NULL,bool *is_dup=NULL) const;
   bool load(const QString &filename,bool dump=false);
+  static QString dumpDateTime(const QDateTime &dt);
+  static QString timeSpecString(Qt::TimeSpec spec);
+  static int utcOffset(const QDateTime &lcl,const QDateTime &utc);
 
  private:
   void ReadVersion0Block(int fd,bool dump);

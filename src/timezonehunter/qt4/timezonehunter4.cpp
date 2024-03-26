@@ -93,6 +93,8 @@ MainWidget::MainWidget(QWidget *parent)
   d_utc_time_edit=new QDateTimeEdit(this);
   d_utc_time_edit->setDisplayFormat("yyyy-MM-ddThh:mm:ss");
   d_utc_time_edit->setDateTime(QDateTime::currentDateTimeUtc());
+  connect(d_utc_time_edit,SIGNAL(dateTimeChanged(const QDateTime &)),
+	  this,SLOT(utcChangedData(const QDateTime &)));
 
   //
   // Local Date/Time
@@ -102,6 +104,24 @@ MainWidget::MainWidget(QWidget *parent)
   d_local_time_label->setAlignment(Qt::AlignRight|Qt::AlignVCenter);
   d_local_time_edit=new QLineEdit(this);
   d_local_time_edit->setReadOnly(true);
+
+  //
+  // Offset
+  //
+  d_offset_label=new QLabel(tr("Offset (secs)")+":",this);
+  d_offset_label->setFont(label_font);
+  d_offset_label->setAlignment(Qt::AlignRight|Qt::AlignVCenter);
+  d_offset_edit=new QLineEdit(this);
+  d_offset_edit->setReadOnly(true);
+
+  //
+  // Offset
+  //
+  d_isdup_label=new QLabel(tr("IS_DUP Flag")+":",this);
+  d_isdup_label->setFont(label_font);
+  d_isdup_label->setAlignment(Qt::AlignRight|Qt::AlignVCenter);
+  d_isdup_edit=new QLineEdit(this);
+  d_isdup_edit->setReadOnly(true);
 
   //
   // Apply Button
@@ -117,7 +137,7 @@ MainWidget::MainWidget(QWidget *parent)
 
 QSize MainWidget::sizeHint() const
 {
-  return QSize(400,150);
+  return QSize(400,175);
 }
 
 
@@ -153,11 +173,26 @@ void MainWidget::tzidActivatedData(const QString &tzid)
 }
 
 
+void MainWidget::utcChangedData(const QDateTime &dt)
+{
+  d_apply_button->setEnabled(true);
+}
+
+
 void MainWidget::applyData()
 {
   QString name;
-  QDateTime lcl=d_tzmap->convert(d_utc_time_edit->dateTime(),&name);
+  int offset;
+  bool is_dup;
+
+  QDateTime utc=d_utc_time_edit->dateTime();
+  utc.setTimeSpec(Qt::UTC);
+  QDateTime lcl=d_tzmap->convert(utc,&name,&offset,&is_dup);
   d_local_time_edit->setText(lcl.toString(Qt::ISODate)+" "+name);
+  d_offset_edit->setText(QString().sprintf("%d",offset));
+  d_isdup_edit->setText(QString().sprintf("%d",is_dup));
+
+  d_apply_button->setDisabled(true);
 }
 
 
@@ -181,6 +216,13 @@ void MainWidget::resizeEvent(QResizeEvent *e)
 
   d_local_time_label->setGeometry(10,ypos,130,20);
   d_local_time_edit->setGeometry(145,ypos,w-155,20);
+  ypos+=25;
+
+  d_offset_label->setGeometry(10,ypos,130,20);
+  d_offset_edit->setGeometry(145,ypos,60,20);
+
+  d_isdup_label->setGeometry(225,ypos,130,20);
+  d_isdup_edit->setGeometry(360,ypos,30,20);
   ypos+=25;
 
   d_apply_button->setGeometry(10,h-45,w-20,30);

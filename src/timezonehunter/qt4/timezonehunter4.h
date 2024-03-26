@@ -44,6 +44,7 @@ class MainWidget : public QWidget
  private slots:
   void zonedirChangedData(const QString &dirname);
   void tzidActivatedData(const QString &tzid);
+  void utcChangedData(const QDateTime &dt);
   void applyData();
 
  protected:
@@ -63,6 +64,12 @@ class MainWidget : public QWidget
 
   QLabel *d_local_time_label;
   QLineEdit *d_local_time_edit;
+
+  QLabel *d_offset_label;
+  QLineEdit *d_offset_edit;
+
+  QLabel *d_isdup_label;
+  QLineEdit *d_isdup_edit;
 
   QPushButton *d_apply_button;
 

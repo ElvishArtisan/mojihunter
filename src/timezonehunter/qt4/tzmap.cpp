@@ -80,10 +80,15 @@ QString TzMap::name() const
 }
 
 
-QDateTime TzMap::convert(const QDateTime &utc,QString *tz_name) const
+QDateTime TzMap::convert(const QDateTime &utc,QString *tz_name,
+			 int *offset_secs,bool *is_dup) const
 {
   int line=tzh_types.size()-1;
+  int prev_line=line-1;
 
+  if(is_dup!=NULL) {
+    *is_dup=false;
+  }
   if(tzh_types.size()==0) {
     if(tz_name!=NULL) {
       *tz_name=name();
@@ -91,19 +96,53 @@ QDateTime TzMap::convert(const QDateTime &utc,QString *tz_name) const
     return utc;
   }
   for(int i=0;i<tzh_types.size();i++) {
-    if(utc<tzh_types.at(i)->startDateTime()) {
-      line=i-1;
+    if(utc<=tzh_types.at(i)->startDateTime()) {  // Works with fallback
+    //    if(utc<tzh_types.at(i)->startDateTime()) {  // OLD WAY
       if(line<0) {
 	line=0;
+	prev_line=-1;
+      }
+      else {
+	line=i-1;
+	prev_line=line-1;
       }
       if(tz_name!=NULL) {
 	*tz_name=tzh_types.at(line)->name();
       }
-      return utc.addMSecs(1000*tzh_types.at(line)->offset());
+      if(offset_secs!=NULL) {
+	*offset_secs=tzh_types.at(line)->offset();
+      }
+      /*
+      if((is_dup!=NULL)&&(prev_line>=0)) {
+	int offset_diff=tzh_types.at(prev_line)->offset()-
+	  tzh_types.at(line)->offset();
+	if(offset_diff>0) {
+	  QDateTime end_dt=tzh_types.at(line)->startDateTime().
+	    addSecs(offset_diff);
+	  *is_dup=end_dt>utc;
+	  printf("offset_diff: %d  start: %s  end: %s  result: %d\n",
+		 offset_diff,
+		 utc.toString(Qt::ISODate).toUtf8().constData(),
+		 end_dt.toString(Qt::ISODate).toUtf8().constData(),
+		 *is_dup);
+	}
+      }
+      */ 
+      QDateTime dt=utc.addSecs(tzh_types.at(line)->offset());
+      //      lcl.setTimeSpec(Qt::OffsetFromUTC);
+      QDateTime lcl;
+      lcl.setTimeSpec(Qt::OffsetFromUTC);
+      lcl.setDate(dt.date());
+      lcl.setTime(dt.time());
+
+      return lcl;
     }
   }
   if(tz_name!=NULL) {
     *tz_name=tzh_types.at(line)->name();
+  }
+  if(offset_secs!=NULL) {
+    *offset_secs=tzh_types.at(line)->offset();
   }
   return utc.addMSecs(1000*tzh_types.at(line)->offset());
 }
@@ -161,6 +200,41 @@ bool TzMap::load(const QString &filename,bool dump)
 
   fprintf(stderr,"unrecognized file version [%c]\n",version);
   return false;
+}
+
+
+QString TzMap::dumpDateTime(const QDateTime &dt)
+{
+  return dt.toString(Qt::ISODate)+" / "+
+    TzMap::timeSpecString(dt.timeSpec());
+}
+
+
+QString TzMap::timeSpecString(Qt::TimeSpec spec)
+{
+  QString ret=QString().sprintf("unknown [%u]",spec);
+
+  switch(spec) {
+  case Qt::LocalTime:
+    ret="Qt::LocalTime";
+    break;
+
+  case Qt::UTC:
+    ret="Qt::UTC";
+    break;
+
+  case Qt::OffsetFromUTC:
+    ret="Qt::OffsetFromUTC";
+    break;
+  }
+
+  return ret;
+}
+
+
+int TzMap::utcOffset(const QDateTime &lcl,const QDateTime &utc)
+{
+  return lcl.time().secsTo(utc.time());
 }
 
 
